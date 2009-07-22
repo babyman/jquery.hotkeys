@@ -191,6 +191,7 @@ Note:
                 ctrl = event.ctrlKey,            
                 // patch for jquery 1.2.5 && 1.2.6 see more at:  
                 // http://groups.google.com/group/jquery-en/browse_thread/thread/83e10b3bb1f1c32b
+                cmd = event.metaKey,
                 alt = event.altKey || event.originalEvent.altKey,
                 mapPoint = null;
 
@@ -205,14 +206,15 @@ Note:
             if (mapPoint){ 
                 var trigger;
                 // event type is associated with the hkId
-                if(!shift && !ctrl && !alt) { // No Modifiers
+                if(!shift && !ctrl && !cmd && !alt) { // No Modifiers
                     trigger = mapPoint[special] ||  (character && mapPoint[character]);
                 }
                 else{
-                    // check combinations (alt|ctrl|shift+anything)
+                    // check combinations (alt|cmd|ctrl|shift+anything)
                     var modif = '';
-                    if(alt) modif +='alt+';
-                    if(ctrl) modif+= 'ctrl+';
+                    if(alt) modif += 'alt+';
+                    if(cmd) modif += 'command+';
+                    if(ctrl) modif += 'ctrl+';
                     if(shift) modif += 'shift+';
                     // modifiers + special keys or modifiers + character or modifiers + shift character or just shift character
                     trigger = mapPoint[modif+special];
