@@ -191,7 +191,7 @@ Note:
                 ctrl = event.ctrlKey,            
                 // patch for jquery 1.2.5 && 1.2.6 see more at:  
                 // http://groups.google.com/group/jquery-en/browse_thread/thread/83e10b3bb1f1c32b
-                cmd = event.metaKey,
+                cmd = event.originalEvent.metaKey ? event.originalEvent.metaKey : false,
                 alt = event.altKey || event.originalEvent.altKey,
                 mapPoint = null;
 
